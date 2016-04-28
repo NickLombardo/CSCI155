@@ -12,7 +12,7 @@ using namespace std;
 // Function prototypes go under this comment. Those commented out
 // do not yet have functions in place.
 
-int mainMenu();
+int mainMenu(char);
 void mapSeats();
 int seats(double[], int);
 void viewSales(int, double, double);
@@ -44,7 +44,8 @@ int main()
   cout << "B: View pricing.\n";
   cout << "C: View total sales.\n";
   cout << "D: Quit the program.\n";
-  mainMenu(); // Menu function call
+  cin >> choice;
+  mainMenu(choice); // Menu function call
   
   return 0;
 }
@@ -59,10 +60,8 @@ int main()
 * Author: Brandon Hawkins                                             *
 **********************************************************************/
 
-int mainMenu()
+int mainMenu(char choice)
 {  
-	char choice;
-	cin >> choice;
   if (islower(choice)) // Change casing to uppercase
      choice = toupper(choice);
   
@@ -82,7 +81,6 @@ int mainMenu()
       return 0;
     default : 
       cout << "Invalid input." << endl;
-			mainMenu();
   }
 }
 
@@ -201,12 +199,12 @@ void viewSales(int sold, double price, double total)
   cout <<"Total Sales: $" << total << endl;
 	
 	// Write numbers to a file
-	outputFile << fixed << setprecision(2);
-	outputFile << "Tickets sold: " << sold << endl;
-	outputFile << "Total sales: $" << total << endl;
+	outputFile << sold << endl;
+	outputFile << total << endl;
 	cout << "The numbers were saved to a file.\n";
 	    
     // Close the file
     outputFile.close();
     cout << "Done \n";
 }
+
